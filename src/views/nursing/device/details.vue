@@ -235,9 +235,9 @@
       @onPage="onPage"
     ></LookData>
   </div>
-  <div class="boxBottom bg-wt">
+  <!-- <div class="boxBottom bg-wt">
     <el-button type="primary" class="bt-grey wt-60" @click="handleReturn">返回</el-button>
-  </div>
+  </div> -->
 </template>
 <script setup>
 import { ref, onMounted } from 'vue';
@@ -456,8 +456,8 @@ const getCurrent = (val) => {
   getLookList();
 };
 // 返回
-const handleReturn = () => {
-  router.go(-1);
-};
+// const handleReturn = () => {
+//   router.go(-1);
+// };
 </script>
 <style lang="scss" scoped src="./index.scss"></style>

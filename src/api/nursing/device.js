@@ -1,5 +1,15 @@
 import request from '@/utils/request'
 
+
+
+// 查询设备列表
+export function getDeviceList(val) {
+  return request({
+    url: '/nursing/device/list?productKey='+val,
+    method: 'get'
+  })
+}
+
 // 查询设备列表
 export function listDevice(query) {
   return request({

@@ -210,7 +210,7 @@ import { getNum } from '@/utils/validate';
 import dayjs from 'dayjs';
 const { proxy } = getCurrentInstance();
 // 接口
-import { allProduct, getPublishedList, getDataList } from '@/api/nursing/device';
+import { allProduct, getPublishedList, getDeviceList } from '@/api/nursing/device';
 import {
   getAlertRule,
   addAlertRule,
@@ -417,7 +417,7 @@ const getList = async (val) => {
     pageNum: 1,
     productKey: val, // 产品key
   };
-  const res = await getDataList(pages); // 获取列表数据
+  const res = await getDeviceList(val); // 获取列表数据
   if (res.rows) {
     listData.value = res.rows;
 

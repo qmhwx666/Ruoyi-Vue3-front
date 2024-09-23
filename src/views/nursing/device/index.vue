@@ -110,7 +110,7 @@
         width="180"
       >
         <template #default="scope">
-          {{ scope.row.locationType === 0 ? '固定设备' : '随身设备' }}
+          {{ scope.row.locationType === 1 ? '固定设备' : '随身设备' }}
         </template>
       </el-table-column>
 
@@ -738,6 +738,7 @@ const handleDetails = (row) => {
     query: { iotId: row.iotId, productKey: row.productKey },
   });
 };
+
 </script>
 <style rel="stylesheet/scss">
     .el-cascader-panel .el-radio{

@@ -49,8 +49,8 @@
       </el-table-column>
       <el-table-column label="状态" align="center" prop="status" >
         <template #default="scope">
-          <el-tag :type="scope.row.status === '0' ? 'danger' : 'success'" disable-transitions>{{
-            scope.row.status === '0' ? '禁用' : '启用'
+          <el-tag :type="scope.row.status === 0 ? 'danger' : 'success'">{{
+            scope.row.status === 0 ? '禁用' : '启用'
           }}</el-tag>
         </template>
       </el-table-column>
@@ -60,8 +60,13 @@
             >删除</el-button>
           <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
             >修改</el-button>
-            <el-button link type="danger" icon="Edit" @click="handleUpdate(scope.row)"
-            >禁用</el-button>
+            <el-button
+            link
+            type="primary"
+            :icon="scope.row.status == 0 ? 'Unlock' : 'lock'"
+            @click="handleEnable(scope.row)"
+            >{{ scope.row.status === 1 ? '禁用' : '启用' }}</el-button
+          >
           
         </template>
       </el-table-column>
@@ -233,6 +238,37 @@ function submitForm() {
     }
   });
 }
+
+// 使用 async/await 语法优化异步操作
+const handleEnable = async (row) => {
+  try {
+    // 获取状态
+    const status = row.status;
+    const info = status === 0 ? '启用' : '禁用';
+
+    // 使用模板字符串
+    const confirmMessage = `是否确认${info}报警规则的数据项？`;
+
+    // 确认操作
+    if (await proxy.$modal.confirm(confirmMessage)) {
+      // 更新参数
+      const param = {
+        id: row.id,
+        status: status === 0 ? 1 : 0,
+      };
+
+      // 执行更新操作
+      await updateAlertRule(param);
+      // 刷新列表
+      getList();
+      // 成功消息
+      proxy.$modal.msgSuccess(`${info}成功`);
+    }
+  } catch (error) {
+    // 异常处理：这里可以根据实际需求进行调整，例如打印错误日志或显示用户友好的错误信息
+    console.error('操作失败，请重试或联系管理员。');
+  }
+};
 
 /** 删除按钮操作 */
 function handleDelete(row) {
