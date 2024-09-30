@@ -14,7 +14,7 @@
           </div>
           <div class="info-item">
             <h1 class="label-wt-long">性别：</h1>
-            <span>{{ baseData.sex ? '女' : '男' }}</span>
+            <span>{{ baseData.sex || '--' }}</span>
           </div>
           <div class="info-item">
             <h1 class="label-wt-long">年龄：</h1>
@@ -43,10 +43,6 @@
             <span>{{ baseData.projectName }}</span>
           </div>
           <div class="info-item">
-            <h1 class="label-wt-long">关联单据：</h1>
-            <span>{{ baseData.relNo }}</span>
-          </div>
-          <div class="info-item">
             <h1 class="label-wt-long">执行状态：</h1>
             <span>{{
               baseData.status === 1
@@ -54,18 +50,6 @@
                 : baseData.status === 2
                 ? '已执行'
                 : '已取消'
-            }}</span>
-          </div>
-          <div class="info-item">
-            <h1 class="label-wt-long">项目类型：</h1>
-            <span>{{
-              baseData.taskType === 2 ? '护理计划内' : '护理计划外'
-            }}</span>
-          </div>
-          <div class="info-item">
-            <h1 class="label-wt-long">创建人：</h1>
-            <span>{{
-              baseData.taskType === 2 ? '系统' : baseData.creator
             }}</span>
           </div>
           <div class="info-item">
@@ -98,23 +82,11 @@
             <div class="info-item">
               <h1 class="label-wt-long">执行图片：</h1>
               <span class="img">
-                <t-image-viewer :images="[baseData.taskImage]">
-                  <template #trigger="{ open }">
-                    <div class="tdesign-demo-image-viewer__ui-image">
-                      <img
-                        alt="test"
-                        :src="baseData.taskImage"
-                        class="tdesign-demo-image-viewer__ui-image--img"
-                      />
-                      <div
-                        class="tdesign-demo-image-viewer__ui-image--hover"
-                        @click="open"
-                      >
-                        <span><ZoomInIcon size="1.8em" /></span>
-                      </div>
-                    </div>
-                  </template>
-                </t-image-viewer>
+                <img
+                    alt="test"
+                    :src="baseData.taskImage"
+                    class="tdesign-demo-image-viewer__ui-image--img"
+                  />
               </span>
             </div>
             <div class="info-item">
@@ -126,30 +98,27 @@
       </div>
       <!-- end -->
       <!-- 取消记录 -->
-      <el-card header="取消记录">
-        <div class="info-block">
-          <div class="info-item">
-            <h1 class="label-wt-long">取消人：</h1>
-            <span>{{ baseData.updater }}</span>
+      <div v-if="baseData.status === 3">
+          <el-card header="取消记录">
+          <div class="info-block">
+            <div class="info-item">
+              <h1 class="label-wt-long">取消人：</h1>
+              <span>{{ baseData.updater }}</span>
+            </div>
+            <div class="info-item">
+              <h1 class="label-wt-long">取消时间：</h1>
+              <span>{{ baseData.updateTime }}</span>
+            </div>
+            <div class="info-item">
+              <h1 class="label-wt-long">取消原因：</h1>
+              <span>{{ baseData.cancelReason }}</span>
+            </div>
           </div>
-          <div class="info-item">
-            <h1 class="label-wt-long">取消时间：</h1>
-            <span>{{ baseData.updateTime }}</span>
-          </div>
-          <div class="info-item">
-            <h1 class="label-wt-long">取消原因：</h1>
-            <span>{{ baseData.cancelReason }}</span>
-          </div>
-        </div>
-      </el-card>
-      <!-- end -->
+        </el-card>
+        <!-- end -->
+      </div>
     </div>
     <!-- end -->
-  </div>
-  <div class="boxBottom bg-wt">
-    <el-button type="primary" class="bt-grey wt-60" @click="handleReturn"
-      >返回</el-button
-    >
   </div>
 </template>
 <script setup>

@@ -4,7 +4,7 @@
       <el-form-item label="预约人姓名" prop="name">
         <el-input
           v-model="queryParams.name"
-          placeholder="请输入预约人姓名"
+          placeholder="请输入"
           clearable
           @keyup.enter="handleQuery"
         />
@@ -25,57 +25,14 @@
           placeholder="请选择预约时间">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="探访人" prop="visitor">
-        <el-input
-          v-model="queryParams.visitor"
-          placeholder="请输入探访人"
-          clearable
-          @keyup.enter="handleQuery"
-        />
-      </el-form-item>
+      
       <el-form-item>
         <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
         <el-button icon="Refresh" @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
-    <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="Plus"
-          @click="handleAdd"
-        >新增</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="Edit"
-          :disabled="single"
-          @click="handleUpdate"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="Delete"
-          :disabled="multiple"
-          @click="handleDelete"
-        >删除</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="Download"
-          @click="handleExport"
-        >导出</el-button>
-      </el-col>
-      <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
-    </el-row>
+    
 
     <el-table v-loading="loading" :data="reservationList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />

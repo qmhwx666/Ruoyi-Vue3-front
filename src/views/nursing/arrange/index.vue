@@ -356,13 +356,16 @@ const getAllProjectList = () => {
 };
 /** 搜索按钮操作 */
 function handleQuery() {
+  
   queryParams.value.pageNum = 1;
+  queryParams.value.pageSize = 10;
   getList();
 }
 
 /** 重置按钮操作 */
 function resetQuery() {
   proxy.resetForm('queryRef');
+  queryParams.value = {};
   handleQuery();
 }
 

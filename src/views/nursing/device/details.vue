@@ -235,9 +235,6 @@
       @onPage="onPage"
     ></LookData>
   </div>
-  <!-- <div class="boxBottom bg-wt">
-    <el-button type="primary" class="bt-grey wt-60" @click="handleReturn">返回</el-button>
-  </div> -->
 </template>
 <script setup>
 import { ref, onMounted } from 'vue';

@@ -231,24 +231,28 @@ const handleSub = async (val) => {
     id: disposeId.value,
   };
   const res = await handleAlertRule(data);
+  debugger
   if (res.code === 200) {
     proxy.$modal.msgSuccess('操作成功');
     handleClose();
-    formRef.value.handleClear();
     getList();
+    formRef.value.handleClear();
+    
   }
 };
 
 /** 搜索按钮操作 */
 function handleQuery() {
+  queryParams.value = {};
   queryParams.value.pageNum = 1;
+  queryParams.value.pageSize = 10;
   getList();
 }
 
 /** 重置按钮操作 */
 function resetQuery() {
   timeData.value = []
-  proxy.resetForm('queryRef');
+  // proxy.resetForm('queryRef');
   handleQuery();
 }
 
