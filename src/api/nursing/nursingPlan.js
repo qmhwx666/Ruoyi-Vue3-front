@@ -1,14 +1,5 @@
 import request from '@/utils/request'
 
-//查询所有的护理计划
-export function getNursingPlanAll(query) {
-  return request({
-    url: '/nursing/nursingPlan/all',
-    method: 'get',
-    params: query
-  })
-}
-
 // 查询护理计划列表
 export function listNursingPlan(query) {
   return request({
@@ -37,15 +28,6 @@ export function addNursingPlan(data) {
 
 // 修改护理计划
 export function updateNursingPlan(data) {
-  return request({
-    url: '/nursing/nursingPlan',
-    method: 'put',
-    data: data
-  })
-}
-
-// 修改护理计划
-export function planStatus(data) {
   return request({
     url: '/nursing/nursingPlan',
     method: 'put',

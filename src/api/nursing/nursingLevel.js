@@ -1,13 +1,5 @@
 import request from '@/utils/request'
 
-//查询所有护理等级
-export function getNursingLevelAll() {
-  return request({
-    url: '/nursing/nursingLevel/listAll',
-    method: 'get'
-  })
-}
-
 // 查询护理等级列表
 export function listNursingLevel(query) {
   return request({
