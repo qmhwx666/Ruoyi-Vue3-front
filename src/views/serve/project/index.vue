@@ -59,20 +59,21 @@
     >
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="序号" type="index" width="50" />
-      <el-table-column label="名称" align="center" prop="name" width="150" />
-      <el-table-column
+        <el-table-column label="护理照片" align="center" prop="image" width="100">
+        <template #default="scope">
+          <image-preview :src="scope.row.image" :width="50" :height="50" />
+        </template>
+      </el-table-column>
+      <el-table-column label="护理项目名称" align="center" prop="name" width="150" />
+      <el-table-column label="价格" align="center" prop="price" width="100" />
+      <el-table-column label="单位" align="center" prop="unit" width="100" />
+       <el-table-column
         label="排序号"
         align="center"
         prop="orderNo"
         width="80"
       />
-      <el-table-column label="单位" align="center" prop="unit" width="100" />
-      <el-table-column label="价格" align="center" prop="price" width="100" />
-      <el-table-column label="图片" align="center" prop="image" width="100">
-        <template #default="scope">
-          <image-preview :src="scope.row.image" :width="50" :height="50" />
-        </template>
-      </el-table-column>
+    
       <el-table-column
         label="护理要求"
         align="center"
